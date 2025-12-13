@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        /* Стилізація таблиці для кращого вигляду */
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список Товарів</h1>
+    
+    <p><a href="{{ url_for('routes.add_product') }}">Додати Новий Продукт</a></p>
+
+    {% if products %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Назва</th>
+                <th>Ціна</th>
+                <th>Опис</th>
+                <th>К-сть (Stock)</th>
+                <th>Активний</th>
+                <th>Категорія</th>
+                <th>Рейтинг</th>
+                <th>Акція (Sale)</th>
+                <th>Створено</th>
+                <th>Оновлено</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }} грн.</td>
+                <td>{{ product.description or '—' }}</td>
+                <td>{{ product.stock }}</td>
+                <td>{{ 'Так' if product.is_active else 'Ні' }}</td>
+                <td>{{ product.category or '—' }}</td>
+                <td>{{ product.rating }}</td>
+                <td>{{ 'Так' if product.sale else 'Ні' }}</td>
+                <td>{{ product.created_at.strftime('%Y-%m-%d %H:%M') if product.created_at else '—' }}</td>
+                <td>{{ product.updated_at.strftime('%Y-%m-%d %H:%M') if product.updated_at else '—' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Товарів не знайдено. Будь ласка, додайте перший товар.</p>
+    {% endif %}
+
+</body>
+</html>

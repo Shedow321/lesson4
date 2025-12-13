@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>My shop</title>
-    </head>
-    <body>
-        <h1>Online shop</h1>
-    </body>
+<head>
+    <title>My Shop</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Вітаємо в Online Shop</h1>
+    <p>Це головна сторінка.</p>
+    <p><a href="{{ url_for('routes.product') }}">Перейти до Списку Товарів</a></p>
+</body>
 </html>
